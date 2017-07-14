@@ -40,7 +40,8 @@ public class DeployVerticle extends AbstractVerticle {
                         .setHa(true)
                         .setWorkerPoolName("vertx-work-pool-jew")
                         .setWorkerPoolSize(core * 10)
-                        .setMaxWorkerExecuteTime(VertxOptions.DEFAULT_MAX_WORKER_EXECUTE_TIME));
+                        .setMaxWorkerExecuteTime(VertxOptions.DEFAULT_MAX_WORKER_EXECUTE_TIME)
+        );
 
     }
 }

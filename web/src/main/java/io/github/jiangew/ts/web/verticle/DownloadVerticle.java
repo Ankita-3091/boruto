@@ -46,6 +46,9 @@ public class DownloadVerticle extends AbstractVerticle {
         router.route().handler(TimeoutHandler.create(2000));
         router.route().handler(BodyHandler.create());
 
+        // blockingHandler or executeBlocking 的替代方案是 work verticle
+        // 每一个阻塞的耗时操作单独 deploy 一个 work verticle 处理，一个 work verticle 一直被线程池中的一个线程执行
+
         // hello vert.x
         router.get("/down").handler(this::handleDown);
 
