@@ -20,7 +20,7 @@ var Vertx = require('vertx-js/vertx');
 
 var io = Packages.io;
 var JsonObject = io.vertx.core.json.JsonObject;
-var JProcessorService = Java.type('io.github.jiangew.ts.service.ProcessorService');
+var JProcessorService = Java.type('me.jiangew.boruto.service.provide.ProcessorService');
 
 /**
  Author: Jiangew
@@ -59,7 +59,7 @@ var ProcessorService = function(j_val) {
   this._jdel = j_processorService;
 };
 
-ProcessorService._jclass = utils.getJavaClass("io.github.jiangew.ts.service.ProcessorService");
+ProcessorService._jclass = utils.getJavaClass("me.jiangew.boruto.service.provide.ProcessorService");
 ProcessorService._jtype = {
   accept: function(obj) {
     return ProcessorService._jclass.isInstance(obj._jdel);
