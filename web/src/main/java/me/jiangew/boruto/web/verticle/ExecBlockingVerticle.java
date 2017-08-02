@@ -1,6 +1,8 @@
 package me.jiangew.boruto.web.verticle;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.DeploymentOptions;
+import me.jiangew.boruto.common.util.Runner;
 
 /**
  * Let's say we have to call a blocking API (e.g. JDBC) to execute a query for each request.
@@ -11,16 +13,16 @@ import io.vertx.core.AbstractVerticle;
  */
 public class ExecBlockingVerticle extends AbstractVerticle {
 
-//    public static void main(String[] args) {
-////        Runner.runExample(ExecBlockingVerticle.class);
-//
-//        // Execute Blocking Dedicated Pool
-//        Runner.runExample(ExecBlockingVerticle.class, new DeploymentOptions()
-//                .setWorkerPoolName("dedicated-pool")
-//                .setWorkerPoolSize(5)
-//                .setMaxWorkerExecuteTime(120000)
-//        );
-//    }
+    public static void main(String[] args) {
+//        Runner.runExample(ExecBlockingVerticle.class);
+
+        // Execute Blocking Dedicated Pool
+        Runner.runExample(ExecBlockingVerticle.class, new DeploymentOptions()
+                .setWorkerPoolName("dedicated-pool")
+                .setWorkerPoolSize(5)
+                .setMaxWorkerExecuteTime(120000)
+        );
+    }
 
     @Override
     public void start() throws Exception {

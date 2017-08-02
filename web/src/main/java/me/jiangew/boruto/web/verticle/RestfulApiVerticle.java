@@ -7,6 +7,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
+import me.jiangew.boruto.common.util.Runner;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,12 +18,12 @@ import java.util.logging.Logger;
  * Date: 04/07/2017
  */
 public class RestfulApiVerticle extends AbstractVerticle {
-    private final static Logger LOGGER = Logger.getLogger("RestfulApiVerticle");
+    private final static Logger LOG = Logger.getLogger("RestfulApiVerticle");
 
     // Convenience method so you can run it in your IDE
-//    public static void main(String[] args) {
-//        Runner.runExample(RestfulApiVerticle.class);
-//    }
+    public static void main(String[] args) {
+        Runner.runExample(RestfulApiVerticle.class);
+    }
 
     private Map<String, JsonObject> products = new HashMap<>();
 

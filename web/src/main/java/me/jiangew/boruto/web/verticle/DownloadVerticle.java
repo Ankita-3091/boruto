@@ -7,6 +7,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.TimeoutHandler;
+import me.jiangew.boruto.common.util.Runner;
 
 /**
  * Author: Jiangew
@@ -14,9 +15,9 @@ import io.vertx.ext.web.handler.TimeoutHandler;
  */
 public class DownloadVerticle extends AbstractVerticle {
 
-//    public static void main(String[] args) {
-//        Runner.runExample(DownloadVerticle.class);
-//    }
+    public static void main(String[] args) {
+        Runner.runExample(DownloadVerticle.class);
+    }
 
     private static Gson gson = new GsonBuilder().create();
 

@@ -1,8 +1,9 @@
 package me.jiangew.boruto.service.consumer;
 
-import me.jiangew.boruto.service.provide.ProcessorService;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.json.JsonObject;
+import me.jiangew.boruto.common.util.Runner;
+import me.jiangew.boruto.service.provide.ProcessorService;
 
 /**
  * Author: Jiangew
@@ -10,9 +11,9 @@ import io.vertx.core.json.JsonObject;
  */
 public class ConsumerVerticle extends AbstractVerticle {
 
-//    public static void main(String[] args) {
-//        Runner.runExample(ConsumerVerticle.class);
-//    }
+    public static void main(String[] args) {
+        Runner.runExample(ConsumerVerticle.class);
+    }
 
     @Override
     public void start() throws Exception {

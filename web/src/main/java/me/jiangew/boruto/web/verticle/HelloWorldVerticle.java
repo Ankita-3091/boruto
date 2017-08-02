@@ -2,6 +2,7 @@ package me.jiangew.boruto.web.verticle;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
+import me.jiangew.boruto.common.util.Runner;
 
 /**
  * Author: Jiangew
@@ -10,9 +11,9 @@ import io.vertx.ext.web.Router;
 public class HelloWorldVerticle extends AbstractVerticle {
 
     // Convenience method so you can run it in your IDE
-//    public static void main(String[] args) {
-//        Runner.runExample(HelloWorldVerticle.class);
-//    }
+    public static void main(String[] args) {
+        Runner.runExample(HelloWorldVerticle.class);
+    }
 
     @Override
     public void start() throws Exception {

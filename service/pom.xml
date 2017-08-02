@@ -12,16 +12,22 @@
     <artifactId>boruto-service</artifactId>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.verticle>me.jiangew.boruto.service.provide.ProcessorServiceVerticle</main.verticle>
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>boruto</groupId>
+            <artifactId>boruto-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-service-proxy</artifactId>
             <version>${vertx.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-codegen</artifactId>

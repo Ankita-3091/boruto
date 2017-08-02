@@ -3,6 +3,7 @@ package me.jiangew.boruto.web.verticle;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.VertxOptions;
+import me.jiangew.boruto.common.util.Runner;
 
 /**
  * Author: Jiangew
@@ -10,9 +11,9 @@ import io.vertx.core.VertxOptions;
  */
 public class DeployVerticle extends AbstractVerticle {
 
-//    public static void main(String[] args) {
-//        Runner.runExample(DeployVerticle.class);
-//    }
+    public static void main(String[] args) {
+        Runner.runExample(DeployVerticle.class);
+    }
 
     @Override
     public void start() {

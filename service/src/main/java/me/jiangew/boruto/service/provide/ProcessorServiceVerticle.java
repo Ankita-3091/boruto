@@ -7,6 +7,7 @@ import io.vertx.ext.web.handler.sockjs.BridgeOptions;
 import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 import io.vertx.serviceproxy.ProxyHelper;
+import me.jiangew.boruto.common.util.Runner;
 
 /**
  * Author: Jiangew
@@ -16,9 +17,9 @@ public class ProcessorServiceVerticle extends AbstractVerticle {
 
     private ProcessorService service;
 
-//    public static void main(String[] args) {
-//        Runner.runExample(ProcessorServiceVerticle.class);
-//    }
+    public static void main(String[] args) {
+        Runner.runExample(ProcessorServiceVerticle.class);
+    }
 
     @Override
     public void start() throws Exception {
