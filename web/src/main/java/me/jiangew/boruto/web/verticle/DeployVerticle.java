@@ -22,10 +22,10 @@ public class DeployVerticle extends AbstractVerticle {
         // different ways of deploying verticles
 
         // 01 deploy a verticle and do not wait for it to start
-//        vertx.deployVerticle("DownloadVerticle");
+//        vertx.deployVerticle("MetricsVerticle");
 
         // 02 deploy a verticle and wait for it to start
-//        vertx.deployVerticle("DownloadVerticle", res -> {
+//        vertx.deployVerticle("MetricsVerticle", res -> {
 //            if (res.succeeded()) {
 //                String deployId = res.result();
 //                System.out.println("DeployVerticle deployed ok, deployId = " + deployId);
@@ -34,11 +34,11 @@ public class DeployVerticle extends AbstractVerticle {
 
         // 03 deploy a verticle with options
         int core = Runtime.getRuntime().availableProcessors();
-        vertx.deployVerticle("DownloadVerticle",
+        vertx.deployVerticle("me.jiangew.boruto.web.verticle.MetricsVerticle",
                 new DeploymentOptions()
                         .setInstances(core)
                         .setHa(true)
-                        .setWorkerPoolName("vertx-work-pool-jew")
+                        .setWorkerPoolName("vertx-work-pool-boruto")
                         .setWorkerPoolSize(core * 10)
                         .setMaxWorkerExecuteTime(VertxOptions.DEFAULT_MAX_WORKER_EXECUTE_TIME)
         );
