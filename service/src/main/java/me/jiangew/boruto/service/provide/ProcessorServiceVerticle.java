@@ -15,6 +15,7 @@ import me.jiangew.boruto.common.util.Runner;
  */
 public class ProcessorServiceVerticle extends AbstractVerticle {
 
+    private final String SERVICE_ADDRESS = "service.provide.processor";
     private ProcessorService service;
 
     public static void main(String[] args) {
@@ -25,7 +26,7 @@ public class ProcessorServiceVerticle extends AbstractVerticle {
     public void start() throws Exception {
         service = ProcessorService.create(vertx);
         // register the handler
-        ProxyHelper.registerService(ProcessorService.class, vertx, service, "vertx.processor");
+        ProxyHelper.registerService(ProcessorService.class, vertx, service, SERVICE_ADDRESS);
 
         Router router = Router.router(vertx);
 

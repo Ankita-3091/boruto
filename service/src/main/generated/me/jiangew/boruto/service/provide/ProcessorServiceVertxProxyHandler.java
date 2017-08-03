@@ -128,6 +128,10 @@ public class ProcessorServiceVertxProxyHandler extends ProxyHandler {
           service.process((io.vertx.core.json.JsonObject)json.getValue("document"), createHandler(msg));
           break;
         }
+        case "fluentProcess": {
+          service.fluentProcess((java.lang.String)json.getValue("id"), createHandler(msg));
+          break;
+        }
         default: {
           throw new IllegalStateException("Invalid action: " + action);
         }

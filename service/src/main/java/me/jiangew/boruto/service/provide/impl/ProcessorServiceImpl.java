@@ -1,5 +1,6 @@
 package me.jiangew.boruto.service.provide.impl;
 
+import io.vertx.core.Vertx;
 import me.jiangew.boruto.service.provide.ProcessorService;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
@@ -12,6 +13,12 @@ import io.vertx.serviceproxy.ServiceException;
  * Date: 06/07/2017
  */
 public class ProcessorServiceImpl implements ProcessorService {
+
+    private Vertx vertx;
+
+    public ProcessorServiceImpl(Vertx vertx) {
+        this.vertx = vertx;
+    }
 
     /**
      * process
@@ -31,6 +38,19 @@ public class ProcessorServiceImpl implements ProcessorService {
             result.put("approved", true);
             resultHandler.handle(Future.succeededFuture(result));
         }
+    }
+
+    @Override
+    public ProcessorService fluentProcess(String id, Handler<AsyncResult<JsonObject>> resultHandler) {
+        return null;
+    }
+
+    public Vertx getVertx() {
+        return vertx;
+    }
+
+    public void setVertx(Vertx vertx) {
+        this.vertx = vertx;
     }
 
 }

@@ -1,6 +1,6 @@
 package me.jiangew.boruto.service.provide;
 
-import me.jiangew.boruto.service.provide.impl.ProcessorServiceImpl;
+import io.vertx.codegen.annotations.Fluent;
 import io.vertx.codegen.annotations.ProxyGen;
 import io.vertx.codegen.annotations.VertxGen;
 import io.vertx.core.AsyncResult;
@@ -8,6 +8,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.serviceproxy.ProxyHelper;
+import me.jiangew.boruto.service.provide.impl.ProcessorServiceImpl;
 
 /**
  * Author: Jiangew
@@ -27,22 +28,22 @@ public interface ProcessorService {
      * @return
      */
     static ProcessorService create(Vertx vertx) {
-        return new ProcessorServiceImpl();
+        return new ProcessorServiceImpl(vertx);
     }
 
     /**
      * factory methods to create a proxy
      *
      * @param vertx
-     * @param address
      * @return
      */
     static ProcessorService createProxy(Vertx vertx, String address) {
-        return ProxyHelper.createProxy(ProcessorService.class, vertx, address);
         // Alternatively, you can create the proxy directly using:
         // return new ProcessorServiceVertxEBProxy(vertx, address);
         // The name of the class to instantiate is the service interface + `VertxEBProxy`.
         // This class is generated during the compilation.
+
+        return ProxyHelper.createProxy(ProcessorService.class, vertx, address);
     }
 
     /**
@@ -52,5 +53,15 @@ public interface ProcessorService {
      * @param resultHandler
      */
     void process(JsonObject document, Handler<AsyncResult<JsonObject>> resultHandler);
+
+    /**
+     * fluent process
+     *
+     * @param id
+     * @param resultHandler
+     * @return
+     */
+    @Fluent
+    ProcessorService fluentProcess(String id, Handler<AsyncResult<JsonObject>> resultHandler);
 
 }

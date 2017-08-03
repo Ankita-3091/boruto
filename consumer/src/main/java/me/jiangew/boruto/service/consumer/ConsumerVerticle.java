@@ -15,18 +15,20 @@ public class ConsumerVerticle extends AbstractVerticle {
         Runner.runExample(ConsumerVerticle.class);
     }
 
+    private final String SERVICE_ADDRESS = "service.provide.processor";
+
     @Override
     public void start() throws Exception {
-        ProcessorService service = ProcessorService.createProxy(vertx, "vertx-processor");
+        ProcessorService proxyService = ProcessorService.createProxy(vertx, SERVICE_ADDRESS);
 
         JsonObject document = new JsonObject().put("name", "vertx");
 
-        service.process(document, (r) -> {
+        proxyService.process(document, (r) -> {
             if (r.succeeded()) {
                 System.out.println(r.result().encodePrettily());
             } else {
                 System.out.println(r.cause());
-                Failures.dealWithFailure(r.cause());
+                Failures.handleFailure(r.cause());
             }
         });
     }

@@ -10,7 +10,7 @@ import me.jiangew.boruto.service.provide.ProcessorService;
  */
 public class Failures {
 
-    public static void dealWithFailure(Throwable t) {
+    public static void handleFailure(Throwable t) {
         if (t instanceof ServiceException) {
             ServiceException exc = (ServiceException) t;
             if (exc.failureCode() == ProcessorService.BAD_NAME_ERROR) {
