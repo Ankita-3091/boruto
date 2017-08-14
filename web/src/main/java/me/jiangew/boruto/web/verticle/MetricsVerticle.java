@@ -11,10 +11,6 @@ import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerResponse;
-import io.vertx.core.json.JsonObject;
-import io.vertx.ext.dropwizard.MetricsService;
-import io.vertx.ext.healthchecks.HealthCheckHandler;
-import io.vertx.ext.healthchecks.Status;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -23,7 +19,6 @@ import io.vertx.ext.web.handler.TimeoutHandler;
 import me.jiangew.boruto.common.util.Runner;
 
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -46,25 +41,8 @@ public class MetricsVerticle extends AbstractVerticle {
     public void start(Future<Void> future) {
         System.out.println("MetricsVerticle deployed and started ...");
 
+        // router
         Router router = Router.router(vertx);
-
-        // metrics service
-        MetricsService metricsService = MetricsService.create(vertx);
-
-        // metrics registry
-        MetricRegistry metricRegistry = SharedMetricRegistries.getOrCreate("boruto");
-        CollectorRegistry.defaultRegistry.register(new DropwizardExports(metricRegistry));
-
-        // health check
-        HealthCheckHandler healthCheckHandler = HealthCheckHandler.create(vertx);
-        // register procedure
-        healthCheckHandler.register("boruto", healthFuture -> {
-            // 01 status
-            healthFuture.complete(Status.OK());
-
-            // 02 status and object
-            healthFuture.complete(Status.OK(new JsonObject().put("load", 2)));
-        });
 
         // cors support
         Set<String> allowHeaders = new HashSet<>();
@@ -83,10 +61,46 @@ public class MetricsVerticle extends AbstractVerticle {
         router.route().handler(TimeoutHandler.create(2000));
         router.route().handler(BodyHandler.create());
 
-        router.get("/metrics").handler(new MetricsHandler());
+        // event bus
+//        Random random = new Random();
+//        vertx.eventBus().consumer("whatever", msg -> {
+//            vertx.setTimer(10 + random.nextInt(50), id -> {
+//                vertx.eventBus().send("whatever", "hello");
+//            });
+//        });
+//        vertx.eventBus().send("whatever", "hello");
+
+        // metrics service
+//        MetricsService metricsService = MetricsService.create(vertx);
+        // Send a metrics events every second
+//        vertx.setPeriodic(1000, t -> {
+//            JsonObject metricsObj = metricsService.getMetricsSnapshot(vertx.eventBus());
+//            vertx.eventBus().publish("testEventBus", metricsObj);
+//        });
+
+        // metrics registry
+        MetricRegistry metricRegistry = SharedMetricRegistries.getOrCreate("boruto");
+        CollectorRegistry.defaultRegistry.register(new DropwizardExports(metricRegistry));
+        // incr counter every second
+        vertx.setPeriodic(1_000L, e -> metricRegistry.counter("testCounter").inc());
+
+        // health check
+//        HealthCheckHandler healthCheckHandler = HealthCheckHandler.create(vertx);
+        // register procedure
+//        healthCheckHandler.register("boruto", healthFuture -> {
+//            // 01 status
+//            healthFuture.complete(Status.OK());
+//
+//            // 02 status and object
+//            healthFuture.complete(Status.OK(new JsonObject().put("load", 2)));
+//        });
+//        router.get("/health").handler(healthCheckHandler);
 
         // blockingHandler or executeBlocking 的替代方案是 work verticle
         // 每一个阻塞的耗时操作单独 deploy 一个 work verticle 处理，一个 work verticle 一直被线程池中的一个线程执行
+
+        // metrics
+        router.get("/metrics").handler(new MetricsHandler());
 
         // vert.x blocking handler && ordered false
         router.get("/test").blockingHandler(this::handleTest, false).failureHandler(this::handleWorkerTimeout);
@@ -98,24 +112,6 @@ public class MetricsVerticle extends AbstractVerticle {
                 future.fail(result.cause());
             }
         });
-
-        // Send a metrics events every second
-        vertx.setPeriodic(1000, t -> {
-            JsonObject metrics = metricsService.getMetricsSnapshot(vertx.eventBus());
-            vertx.eventBus().publish("metrics", metrics);
-        });
-
-        // Send some messages
-        Random random = new Random();
-        vertx.eventBus().consumer("whatever", msg -> {
-            vertx.setTimer(10 + random.nextInt(50), id -> {
-                vertx.eventBus().send("whatever", "hello");
-            });
-        });
-        vertx.eventBus().send("whatever", "hello");
-
-        // Increase counter every second
-        vertx.setPeriodic(1_000L, e -> metricRegistry.counter("testCounter").inc());
 
     }
 
