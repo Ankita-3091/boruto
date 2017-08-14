@@ -2,6 +2,7 @@ package me.jiangew.boruto.web;
 
 import io.vertx.core.VertxOptions;
 import io.vertx.ext.dropwizard.DropwizardMetricsOptions;
+import io.vertx.ext.hawkular.VertxHawkularOptions;
 
 /**
  * Author: Jiangew
@@ -32,6 +33,11 @@ public class Launcher extends io.vertx.core.Launcher {
                         .setEnabled(true)
                         .setJmxEnabled(true)
                         .setJmxDomain("vertx-metrics-boruto")
+        );
+
+        // Start hawkular metrics
+        options.setMetricsOptions(
+                new VertxHawkularOptions().setEnabled(true)
         );
     }
 

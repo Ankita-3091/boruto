@@ -13,6 +13,8 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.dropwizard.MetricsService;
+import io.vertx.ext.healthchecks.HealthCheckHandler;
+import io.vertx.ext.healthchecks.Status;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -50,8 +52,19 @@ public class MetricsVerticle extends AbstractVerticle {
         MetricsService metricsService = MetricsService.create(vertx);
 
         // metrics registry
-        MetricRegistry metricRegistry = SharedMetricRegistries.getOrCreate("exported");
+        MetricRegistry metricRegistry = SharedMetricRegistries.getOrCreate("boruto");
         CollectorRegistry.defaultRegistry.register(new DropwizardExports(metricRegistry));
+
+        // health check
+        HealthCheckHandler healthCheckHandler = HealthCheckHandler.create(vertx);
+        // register procedure
+        healthCheckHandler.register("boruto", healthFuture -> {
+            // 01 status
+            healthFuture.complete(Status.OK());
+
+            // 02 status and object
+            healthFuture.complete(Status.OK(new JsonObject().put("load", 2)));
+        });
 
         // cors support
         Set<String> allowHeaders = new HashSet<>();
