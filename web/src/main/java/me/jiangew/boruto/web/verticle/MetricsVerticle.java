@@ -78,7 +78,7 @@ public class MetricsVerticle extends AbstractVerticle {
 //            vertx.eventBus().publish("testEventBus", metricsObj);
 //        });
 
-        // metrics registry
+        // dropwizard metrics
         MetricRegistry metricRegistry = SharedMetricRegistries.getOrCreate("boruto");
         CollectorRegistry.defaultRegistry.register(new DropwizardExports(metricRegistry));
         // incr counter every second
@@ -99,7 +99,7 @@ public class MetricsVerticle extends AbstractVerticle {
         // blockingHandler or executeBlocking 的替代方案是 work verticle
         // 每一个阻塞的耗时操作单独 deploy 一个 work verticle 处理，一个 work verticle 一直被线程池中的一个线程执行
 
-        // metrics
+        // dropwizard metrics
         router.get("/metrics").handler(new MetricsHandler());
 
         // vert.x blocking handler && ordered false
