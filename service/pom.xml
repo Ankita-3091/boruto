@@ -27,17 +27,21 @@
             <groupId>io.vertx</groupId>
             <artifactId>vertx-service-proxy</artifactId>
             <version>${vertx.version}</version>
+            <!--solution 1: generated service proxy and handler-->
+            <!--<classifier>processor</classifier>-->
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-codegen</artifactId>
             <version>${vertx.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
     <build>
         <pluginManagement>
             <plugins>
+                <!--solution 3: generated service proxy and handler-->
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.1</version>
@@ -55,6 +59,16 @@
                         </compilerArgs>
                     </configuration>
                 </plugin>
+
+                <!--solution 2: generated service proxy and handler-->
+                <!--<plugin>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<configuration>-->
+                <!--<annotationProcessors>-->
+                <!--<annotationProcessor>io.vertx.serviceproxy.ServiceProxyProcessor</annotationProcessor>-->
+                <!--</annotationProcessors>-->
+                <!--</configuration>-->
+                <!--</plugin>-->
             </plugins>
         </pluginManagement>
 

@@ -2,7 +2,6 @@ package me.jiangew.boruto.service.provide;
 
 import io.vertx.codegen.annotations.Fluent;
 import io.vertx.codegen.annotations.ProxyGen;
-import io.vertx.codegen.annotations.VertxGen;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
@@ -15,7 +14,7 @@ import me.jiangew.boruto.service.provide.impl.ProcessorServiceImpl;
  * Date: 06/07/2017
  */
 @ProxyGen // Generate the proxy and handler
-@VertxGen // Generate clients in non-java languages
+//@VertxGen // Generate clients in non-java languages
 public interface ProcessorService {
 
     int NO_NAME_ERROR = 10001;
