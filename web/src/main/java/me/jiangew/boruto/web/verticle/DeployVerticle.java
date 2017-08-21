@@ -3,6 +3,7 @@ package me.jiangew.boruto.web.verticle;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.VertxOptions;
+import io.vertx.core.json.JsonObject;
 import me.jiangew.boruto.common.util.Runner;
 
 /**
@@ -32,15 +33,17 @@ public class DeployVerticle extends AbstractVerticle {
 //            }
 //        });
 
-        // 03 deploy a verticle with options
+        JsonObject config = config();
         int core = Runtime.getRuntime().availableProcessors();
-        vertx.deployVerticle("me.jiangew.boruto.web.verticle.MetricsVerticle",
+
+        // 03 deploy a verticle with options
+        vertx.deployVerticle(config.getString("deployVerticle", "me.jiangew.boruto.web.verticle.MetricsVerticle"),
                 new DeploymentOptions()
-                        .setInstances(core)
-                        .setHa(true)
-                        .setWorkerPoolName("vertx-work-pool-boruto")
-                        .setWorkerPoolSize(core * 10)
-                        .setMaxWorkerExecuteTime(VertxOptions.DEFAULT_MAX_WORKER_EXECUTE_TIME)
+                        .setInstances(core * config.getInteger("instanceFactor", 1))
+                        .setHa(config.getBoolean("ha", true))
+                        .setWorkerPoolName(config.getString("workerPoolName", "vertx-work-pool-boruto"))
+                        .setWorkerPoolSize(core * config.getInteger("workerPoolSizeFactor", 5))
+                        .setMaxWorkerExecuteTime(config.getLong("maxWorkerExecTime", VertxOptions.DEFAULT_MAX_WORKER_EXECUTE_TIME))
         );
 
     }

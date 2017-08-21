@@ -1,0 +1,8 @@
+{
+  "deployVerticle": "me.jiangew.boruto.web.verticle.MetricsVerticle",
+  "instanceFactor": 1,
+  "ha": true,
+  "workerPoolName": "vertx-work-pool-minerva",
+  "workerPoolSizeFactor": 50,
+  "maxWorkerExecTime": 60000000000
+}
