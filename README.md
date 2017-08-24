@@ -96,13 +96,13 @@ This example is adapted from the [gRPC examples](https://github.com/grpc/grpc-ja
 
 This example shows the various kind of gRPC service calls:
 
-- simple RPC
-- server-side streaming RPC
-- client-side streaming RPC
-- bidirectional streaming RPC
+* simple RPC
+* server-side streaming RPC
+* client-side streaming RPC
+* bidirectional streaming RPC
 
-[gRPC server example](link:src/main/java/io/vertx/example/grpc/routeguide/Server.java)
-[gRPC client example](link:src/main/java/io/vertx/example/grpc/routeguide/Client.java)
+- [gRPC server example](link:src/main/java/io/vertx/example/grpc/routeguide/Server.java)
+- [gRPC client example](link:src/main/java/io/vertx/example/grpc/routeguide/Client.java)
 
 You can run the server and then run the client.
 

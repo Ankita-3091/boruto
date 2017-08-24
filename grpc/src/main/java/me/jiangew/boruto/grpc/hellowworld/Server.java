@@ -31,6 +31,7 @@ public class Server extends AbstractVerticle {
             }
         };
 
+        // create server
         VertxServer rpcServer = VertxServerBuilder
                 .forAddress(vertx, "localhost", 8080)
                 // enable TLS/SSL
@@ -47,7 +48,7 @@ public class Server extends AbstractVerticle {
             if (ar.succeeded()) {
                 System.out.println("gRPC service started");
             } else {
-                System.out.println("Could not start server " + ar.cause().getMessage());
+                System.out.println("Could not start gRPC server " + ar.cause().getMessage());
             }
         });
     }
