@@ -39,6 +39,27 @@ public class Launcher extends io.vertx.core.Launcher {
         options.setMetricsOptions(
                 new VertxHawkularOptions().setEnabled(true)
         );
+
+        // Start hawkular metrics
+        //        options.setMetricsOptions(
+        //                new VertxHawkularOptions()
+        //                        .setEnabled(true)
+        //                        // user defined metrics
+        //                        .setMetricsBridgeEnabled(true)
+        //                        .setMetricsBridgeAddress("hawkular.metrics")
+        ////                        .setHost("localhost")
+        ////                        .setPort(8080)
+        //                        // https ssl
+        ////                        .setHttpOptions(new HttpClientOptions().setSsl(true))
+        //                        // requests sent to a Hawkular server must be authenticated and tenant must be set to hawkular
+        //                        .setTenant("hawkular")
+        //                        .setAuthenticationOptions(new AuthenticationOptions()
+        //                                .setEnabled(true)
+        //                                .setId("jiangew")
+        //                                .setSecret("123456")
+        //                        )
+        //        );
+
     }
 
 }
