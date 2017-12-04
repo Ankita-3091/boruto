@@ -12,7 +12,7 @@
 
     <properties>
         <main.launcher>io.vertx.core.Launcher</main.launcher>
-        <custom.launcher>com.qq.reader.ts.verticle.Launcher</custom.launcher>
+        <custom.launcher>me.jiangew.boruto.web.Launcher</custom.launcher>
         <main.verticle>me.jiangew.boruto.web.verticle.DeployVerticle</main.verticle>
     </properties>
 
