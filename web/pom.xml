@@ -35,12 +35,12 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-hawkular-metrics</artifactId>
-            <version>${vertx.version}</version>
+            <version>3.5.4</version>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-dropwizard-metrics</artifactId>
-            <version>${vertx.version}</version>
+            <version>3.5.4</version>
         </dependency>
         <dependency>
             <groupId>io.prometheus</groupId>

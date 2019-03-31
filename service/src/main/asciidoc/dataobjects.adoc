@@ -1,0 +1,15 @@
+= Cheatsheets
+
+[[Beer]]
+== Beer
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[name]]`@name`|`String`|-
+|[[price]]`@price`|`Number (int)`|-
+|[[style]]`@style`|`String`|-
+|===
+

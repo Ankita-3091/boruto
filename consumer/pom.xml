@@ -12,7 +12,7 @@
     <artifactId>boruto-consumer</artifactId>
 
     <properties>
-        <main.verticle>me.jiangew.boruto.service.consumer.ConsumerVerticle</main.verticle>
+        <main.verticle>me.jiangew.boruto.consumer.ProcessorConsumerVerticle</main.verticle>
     </properties>
 
     <dependencies>

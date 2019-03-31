@@ -1,4 +1,4 @@
-package me.jiangew.boruto.service.provide;
+package me.jiangew.boruto.ebservice;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
@@ -8,18 +8,19 @@ import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 import io.vertx.serviceproxy.ProxyHelper;
 import me.jiangew.boruto.common.util.Runner;
+import me.jiangew.boruto.ebservice.processor.ProcessorService;
 
 /**
  * Author: Jiangew
  * Date: 06/07/2017
  */
-public class ProcessorServiceVerticle extends AbstractVerticle {
+public class ProcessorVerticle extends AbstractVerticle {
 
     private final String SERVICE_ADDRESS = "service.provide.processor";
     private ProcessorService service;
 
     public static void main(String[] args) {
-        Runner.runExample(ProcessorServiceVerticle.class);
+        Runner.runExample(ProcessorVerticle.class);
     }
 
     @Override
