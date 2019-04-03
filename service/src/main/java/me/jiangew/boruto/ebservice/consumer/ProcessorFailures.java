@@ -1,4 +1,4 @@
-package me.jiangew.boruto.consumer;
+package me.jiangew.boruto.ebservice.consumer;
 
 import io.vertx.serviceproxy.ServiceException;
 import me.jiangew.boruto.ebservice.processor.ProcessorService;

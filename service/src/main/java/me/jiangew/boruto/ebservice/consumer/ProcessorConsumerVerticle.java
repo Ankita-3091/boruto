@@ -1,11 +1,10 @@
-package me.jiangew.boruto.consumer;
+package me.jiangew.boruto.ebservice.consumer;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.json.JsonObject;
 import me.jiangew.boruto.common.util.Runner;
 import me.jiangew.boruto.ebservice.processor.ProcessorService;
 
-/** Author: Jiangew Date: 06/07/2017 */
 public class ProcessorConsumerVerticle extends AbstractVerticle {
 
   public static void main(String[] args) {

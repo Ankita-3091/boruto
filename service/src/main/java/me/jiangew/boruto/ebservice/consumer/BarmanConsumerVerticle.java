@@ -1,4 +1,4 @@
-package me.jiangew.boruto.consumer;
+package me.jiangew.boruto.ebservice.consumer;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;

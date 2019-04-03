@@ -1,4 +1,4 @@
-package me.jiangew.boruto.ebservice;
+package me.jiangew.boruto.ebservice.provider;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;

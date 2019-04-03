@@ -9,11 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>boruto-service</artifactId>
+    <artifactId>boruto-eventbus-service</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <main.verticle>me.jiangew.boruto.ebservice.ProcessorVerticle</main.verticle>
+        <main.verticle>me.jiangew.boruto.ebservice.provider.ProcessorVerticle</main.verticle>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -26,14 +28,15 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-service-proxy</artifactId>
-            <version>${vertx.version}</version>
+            <!--<version>${vertx.version}</version>-->
             <!--solution 1: generated service proxy and handler-->
             <!--<classifier>processor</classifier>-->
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-codegen</artifactId>
-            <version>${vertx.version}</version>
+            <!--<version>${vertx.version}</version>-->
+            <!--<classifier>processor</classifier>-->
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -62,45 +65,54 @@
 
                 <!--solution 2: generated service proxy and handler-->
                 <!--<plugin>-->
-                <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                <!--<configuration>-->
-                <!--<annotationProcessors>-->
-                <!--<annotationProcessor>io.vertx.serviceproxy.ServiceProxyProcessor</annotationProcessor>-->
-                <!--</annotationProcessors>-->
-                <!--</configuration>-->
+                    <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                    <!--<configuration>-->
+                        <!--<annotationProcessors>-->
+                            <!--<annotationProcessor>io.vertx.serviceproxy.ServiceProxyProcessor</annotationProcessor>-->
+                        <!--</annotationProcessors>-->
+                    <!--</configuration>-->
                 <!--</plugin>-->
             </plugins>
         </pluginManagement>
 
         <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-shade-plugin</artifactId>-->
+                <!--<version>2.3</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>shade</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<transformers>-->
+                                <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+                                    <!--<manifestEntries>-->
+                                        <!--<Main-Class>io.vertx.core.Launcher</Main-Class>-->
+                                        <!--<Main-Verticle>${main.verticle}</Main-Verticle>-->
+                                    <!--</manifestEntries>-->
+                                <!--</transformer>-->
+                                <!--<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">-->
+                                    <!--<resource>META-INF/services/io.vertx.core.spi.VerticleFactory</resource>-->
+                                <!--</transformer>-->
+                            <!--</transformers>-->
+                            <!--<artifactSet>-->
+                            <!--</artifactSet>-->
+                            <!--<outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.3</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <manifestEntries>
-                                        <Main-Class>io.vertx.core.Launcher</Main-Class>
-                                        <Main-Verticle>${main.verticle}</Main-Verticle>
-                                    </manifestEntries>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/services/io.vertx.core.spi.VerticleFactory</resource>
-                                </transformer>
-                            </transformers>
-                            <artifactSet>
-                            </artifactSet>
-                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <configuration>
+                    <mainClass>me.jiangew.boruto.ebservice.BarmanApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

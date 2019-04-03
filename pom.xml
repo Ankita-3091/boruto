@@ -11,7 +11,6 @@
     <modules>
         <module>common</module>
         <module>service</module>
-        <module>consumer</module>
         <module>web</module>
         <module>grpc</module>
     </modules>
@@ -31,7 +30,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    
     <dependencies>
         <dependency>
             <groupId>io.vertx</groupId>
